@@ -10,7 +10,7 @@
             <a class="btn btn-primary my-3" href="/customers/create">Add Customer</a>
             @if (session('status'))
             <div class="alert alert-success">
-                {{ session('status') }}
+                Customer has been <span class="font-weight-bold">{{session('status')}}</span> successfully!
             </div>
             @endif
             <ul class="list-group">

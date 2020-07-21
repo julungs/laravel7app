@@ -13,10 +13,13 @@
                   <h6 class="card-subtitle mb-2 text-muted">{{$customerData->email}}</h6>
                   <hr>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam maiores placeat magni?</p>
-                  <button class="btn btn-primary" type="button" >Edit</button>
-                  <button class="btn btn-danger" type="button" >Delete</button>
-                  <hr>
-                  <a class="btn btn-secondary" href="/customers">Back to customers list</a>
+                  <a class="btn btn-primary" href="{{$customerData->id}}/edit">Edit</a>
+                  <form class="d-inline" action="/customers/{{$customerData->id}}" method="post">
+                    @method('delete')
+                    @csrf
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                  </form>
+                  <a class="btn btn-secondary d-block mt-2" href="/customers">Back to customers list</a>
                 </div>
             </div>
         </div>

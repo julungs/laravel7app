@@ -34,7 +34,7 @@ class CustomersController extends Controller
     {
         $tabName = 'Form Add Customer';
         return view('customers/create', [
-            'title' => $tabName,
+            'title' => $tabName
         ]);
     }
 
@@ -46,11 +46,11 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => ['required'],
             'phone' => ['required', 'min:12', 'max:14'],
             'email' => ['required', 'email:rfc,dns,spoof'],
-            'address' => ['required'],
+            'address' => ['required']
         ]);
         $request->slug = Str::slug($request->name, '-');
         Customer::create([
@@ -60,7 +60,7 @@ class CustomersController extends Controller
             'email' => $request->email,
             'address' => $request->address
         ]);
-        return redirect('/customers')->with('status', 'Customer has been added successfully!');
+        return redirect('/customers')->with('status', 'ADDED');
     }
 
     /**
@@ -87,7 +87,12 @@ class CustomersController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        $data = $customer;
+        $tabName = 'Form Edit Customer';
+        return view('customers/edit', [
+            'title' => $tabName,
+            'customerData' => $data
+        ]);
     }
 
     /**
@@ -99,7 +104,21 @@ class CustomersController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $request->validate([
+            'name' => ['required'],
+            'phone' => ['required', 'min:12', 'max:14'],
+            'email' => ['required', 'email:rfc,dns,spoof'],
+            'address' => ['required']
+        ]);
+        $request->slug = Str::slug($request->name, '-');
+        Customer::where('id', $customer->id)->update([
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address
+        ]);
+        return redirect('/customers')->with('status', 'UPDATED');
     }
 
     /**
@@ -110,6 +129,7 @@ class CustomersController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        Customer::destroy($customer->id);
+        return redirect('/customers')->with('status', 'DELETED');
     }
 }

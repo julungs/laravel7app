@@ -13,10 +13,10 @@ class PagesController extends Controller
      * @return View
      */
 
-    public function home()
+    public function index()
     {
         $tabName = 'Home';
-        return view('index', ['title' => $tabName,]);
+        return view('index', ['title' => $tabName]);
     }
 
     public function about()
