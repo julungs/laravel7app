@@ -14,13 +14,16 @@
             </div>
             @endif
             <ul class="list-group">
-                @foreach ($customersData as $data)
+                @foreach ($customersData as $customer)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{$data->name}}
-                <a class="badge badge-info badge-pill" href="/customers/{{$data->id}}">Detail</a>
+                    {{$customer->name}}
+                <a class="badge badge-info badge-pill" href="/customers/{{$customer->id}}">Detail</a>
                 </li>
                 @endforeach
             </ul>
+            <div class="mt-2">
+                {{$customersData->links()}}
+            </div>
         </div>
     </div>
  </div>

@@ -9,7 +9,7 @@
             <h2 class="mt-2 mb-3">{{$title}}</h2>
             <form method="post" action="/customers">
               @csrf
-                <div class="form-group">
+                  <div class="form-group">
                   <label for="name">Name</label>
                   <input class="form-control @error('name') is-invalid @enderror" type="text" id="name" placeholder="e.g.  Firstname Lastname" name="name" value="{{old('name')}}" required autofocus>
                     @error('name') <div class="invalid-feedback">{{$message}}</div> @enderror
@@ -28,9 +28,9 @@
                     <label for="address">Address</label>
                     <input class="form-control @error('address') is-invalid @enderror" type="text" id="address" placeholder="e.g.  11th Wall Street, California" name="address" value="{{old('address')}}" required>
                     @error('address') <div class="invalid-feedback">{{$message}}</div> @enderror
-                </div>
-                <button class="btn btn-primary" type="submit">Submit</button>
-                <a class="btn btn-secondary" href="/customers">Cancel</a>
+                  </div>
+                  <button class="btn btn-primary" type="submit">Add</button>
+                  <a class="btn btn-secondary" href="/customers">Cancel</a>
             </form>
         </div>
     </div>

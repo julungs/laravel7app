@@ -7,10 +7,17 @@
     <div class="row">
         <div class="col-6">
             <h2 class="mt-2">{{$title}}</h2>
+            @if (session('status'))
+            <div class="alert alert-success">
+                Customer <span class="font-weight-bold">{{$customerData->name}}</span> has been <span class="font-weight-bold">{{session('status')}}</span> successfully!
+            </div>
+            @endif
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                   <h5 class="card-title">{{$customerData->name}}</h5>
                   <h6 class="card-subtitle mb-2 text-muted">{{$customerData->email}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">{{$customerData->phone}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">{{$customerData->address}}</h6>
                   <hr>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam maiores placeat magni?</p>
                   <a class="btn btn-primary" href="{{$customerData->id}}/edit">Edit</a>

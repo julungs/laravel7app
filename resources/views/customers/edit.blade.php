@@ -10,7 +10,7 @@
             <form method="post" action="/customers/{{$customerData->id}}">
               @method('patch')
               @csrf
-                <div class="form-group">
+                  <div class="form-group">
                   <label for="name">Name</label>
                   <input class="form-control @error('name') is-invalid @enderror" type="text" id="name" placeholder="e.g.  Firstname Lastname" name="name" value="{{$customerData->name}}" required autofocus>
                     @error('name') <div class="invalid-feedback">{{$message}}</div> @enderror
@@ -29,10 +29,10 @@
                     <label for="address">Address</label>
                     <input class="form-control @error('address') is-invalid @enderror" type="text" id="address" placeholder="e.g.  11th Wall Street, California" name="address" value="{{$customerData->address}}" required>
                     @error('address') <div class="invalid-feedback">{{$message}}</div> @enderror
-                </div>
-                <button class="btn btn-primary" type="submit">Update</button>
-                <a class="btn btn-secondary" href="/customers/{{$customerData->id}}">Cancel</a>
-            </form>
+                  </div>
+                  <button class="btn btn-primary" type="submit">Update</button>
+                  <a class="btn btn-secondary" href="/customers/{{$customerData->id}}">Cancel</a>
+              </form>
         </div>
     </div>
  </div>

@@ -19,12 +19,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($contactsData as $data)
+                    @foreach ($contactsData as $contact)
                     <tr>
                     <th scope="row">{{$loop->iteration}}</th>
-                        <td>{{$data->name}}</td>
-                        <td>{{$data->phone}}</td>
-                        <td>{{$data->email}}</td>
+                        <td>{{$contact->name}}</td>
+                        <td>{{$contact->phone}}</td>
+                        <td>{{$contact->email}}</td>
                         <td>
                             <a class="badge badge-info" href="">Detail</a>
                             <a class="badge badge-warning" href="">Edit</a>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class CustomersController extends Controller
@@ -16,8 +17,10 @@ class CustomersController extends Controller
     public function index()
     {
         // $data = DB::table('contacts')->get();
-        $data = Customer::all();
-        // dd($contactsData);
+        // $data = Customer::all();
+        $data = Customer::paginate(6);
+        // $d = response()->json($data);
+        // dump($data);
         $tabName = 'Customers';
         return view('customers/index', [
             'title' => $tabName,
@@ -53,14 +56,14 @@ class CustomersController extends Controller
             'address' => ['required']
         ]);
         $request->slug = Str::slug($request->name, '-');
-        Customer::create([
+        $customer = Customer::create([
             'name' => $request->name,
             'slug' => $request->slug,
             'phone' => $request->phone,
             'email' => $request->email,
             'address' => $request->address
         ]);
-        return redirect('/customers')->with('status', 'ADDED');
+        return redirect('/customers' . '/' . $customer->id)->with('status', 'added');
     }
 
     /**
@@ -118,7 +121,7 @@ class CustomersController extends Controller
             'email' => $request->email,
             'address' => $request->address
         ]);
-        return redirect('/customers')->with('status', 'UPDATED');
+        return redirect('/customers' . '/' . $customer->id)->with('status', 'updated');
     }
 
     /**
@@ -130,6 +133,6 @@ class CustomersController extends Controller
     public function destroy(Customer $customer)
     {
         Customer::destroy($customer->id);
-        return redirect('/customers')->with('status', 'DELETED');
+        return redirect('/customers')->with('status', 'deleted');
     }
 }
